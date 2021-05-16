@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+}
+@using Academy.Models.Account;
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #6abadeba;
+        font-family: 'Arial';
+    }
+</style>
+<div class="text-center" style="padding-top: 15%">
+    <h1 class="display-4">Добре Дошли в Академията</h1>
+
+
+    @if (User.IsInRole("Admin"))
+    {
+        <h1>Влязохте като <a style="color: forestgreen">Администратор</a></h1>
+
+    }
+
+    else if (User.IsInRole("Teacher"))
+    {
+        <h1>Влязохте като  <a style="color: forestgreen">Учител</a></h1>
+
+    }
+    else if (User.IsInRole("Guest"))
+    {
+        <h1>Влязохте като  <a style="color:forestgreen">Потребител</a></h1>
+
+    }
+</div>

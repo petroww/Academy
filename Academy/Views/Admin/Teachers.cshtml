@@ -1,0 +1,55 @@
+﻿@{
+    @model List<Academy.Models.Account.AcademyUser>
+}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #6abadeba;
+        font-family: 'Arial';
+    }
+
+    .form-content {
+        border: 1px solid #ced4da;
+        margin-bottom: 2%;
+        background: #23463f;
+        border-radius: 15px;
+        color: #08ffd1;
+    }
+</style>
+<div class="form-content">
+    @if (Model.Count == 0)
+    {
+        <h2 class="text-danger"> Нямате назначени учители </h2>
+    }
+    <table class="table form-content">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Имейл</th>
+
+                <th scope="col" #>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            <h2 style="text-align:center"> Учители </h2>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <th scope="row">@(Model.IndexOf(user) + 1))</th>
+                    <td>@user.Email</td>
+
+                    <td>
+
+                        <a class="btn btn-primary"
+                           asp-controller="Admin"
+                           asp-action="MakeGuest"
+                           asp-route-username="@user.UserName">Направи потребител</a>
+
+                    <td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

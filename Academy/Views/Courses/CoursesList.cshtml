@@ -1,0 +1,82 @@
+﻿@{
+    @model System.Collections.Generic.List<Academy.Models.Courses.Cours>
+
+}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #6abadeba;
+        font-family: 'Arial';
+    }
+
+    .form-content {
+        border: 1px solid #ced4da;
+        margin-bottom: 2%;
+        background: #23463f;
+        border-radius: 15px;
+        color: #08ffd1;
+    }
+</style>
+<div class="form-content">
+    @if (Model == null || Model?.Count == 0)
+    {
+        <p class="text-succes" style="font-size: 20px; color:red">@ViewData["delete"]</p>
+        if (User.IsInRole("Teacher"))
+        {
+        <h1 class="text-center"> Нямате записани курсове </h1>
+        }
+        else
+        {
+             <h1 class="text-center"> Няма налични курсове </h1>
+        }
+    }
+    else
+    {
+        <p class="text-succes" style="font-size: 20px; color:lawngreen">@ViewData["Success"]</p>
+        <p class="text-succes" style="font-size: 20px; color:red">@ViewData["delete"]</p>
+
+      
+        <table class="table form-content">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Област</th>
+                    <th scope="col">Тема</th>
+                    <th scope="col" #>Продължителност (минути)</th>
+                    <th scope="col" #></th>
+                </tr>
+            </thead>
+            <tbody>
+                <h2 style="text-align:center"> Курсове </h2>
+                @foreach (var course in Model)
+                {
+                    <tr>
+                        <th scope="row">@(Model.IndexOf(course) + 1))</th>
+                        <td>@course.Area</td>
+                        <td>@course.Theme</td>
+                        <td>@course.Time</td>
+
+                        <td>
+                            @if(User.IsInRole("Admin") || User.IsInRole("Teacher"))
+                            {
+                            <a class="btn btn-primary"
+                               asp-controller="Courses" \
+                               asp-action="Edit"
+                               asp-route-coursId="@course.Id">Редактиране</a>
+
+                            <a class="btn btn-primary"
+                               asp-controller="Courses" \
+                               asp-action="Delete"
+                               asp-route-coursId="@course.Id">Изтриване</a>
+
+                            }
+
+                        <td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+</div>

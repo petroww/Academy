@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Academy.Models.Account;
+
+@inject SignInManager<AcademyUser> SignInManager
+@inject UserManager<AcademyUser> UserManager
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+            .button1:hover {
+                background-color: #4CAF50;
+                color: white;
+            }
+       
+    </style>
+    <ul class="navbar-nav">
+        @if (SignInManager.IsSignedIn(User))
+        {
+            /*<li class="nav-item">
+                <a  asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Здравейте отново @User.Identity.Name!</a>
+            </li>*/
+            <li class="nav-item">
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="button button1">Logout</button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="button button1" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <a class="button button1" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+            </li>
+        }
+    </ul>

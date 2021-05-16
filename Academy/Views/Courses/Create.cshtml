@@ -1,0 +1,89 @@
+﻿@{ 
+        @model Academy.Models.Courses.Cours
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #6abadeba;
+            font-family: 'Arial';
+        }
+
+       
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+       
+        
+
+        .form-content {
+            border: 1px solid #ced4da;
+            margin-bottom: 2%;
+            background: #23463f;
+            border-radius: 15px;
+            color: #08ffd1;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div class="container text-center form-content">
+        <div>
+            <h2>Създаване на обучителен курс</h2>
+        </div>
+        <form method="post" asp-controller="Courses" asp-action="Create">
+
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Area">Област на обучение</label>
+                <input asp-for="Area" type="text" class="form-control" placeholder="Област на обучение...">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Theme">Тема на урока</label>
+                <input asp-for="Theme" type="text" class="form-control" placeholder="Тема на урока...">
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Time">Времетраене в минути</label>
+                <input asp-for="Time" type="number" class="form-control" placeholder="Времетраене в минути...">
+            </div>
+
+
+
+            <input type="submit" value="Създай">
+        </form>
+    </div>
+
+</body>
+</html>
